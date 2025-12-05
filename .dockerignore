@@ -1,0 +1,27 @@
+# 依赖和构建产物
+target/
+node_modules/
+dist/
+*.lock
+
+# 环境文件
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志
+*.log
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp

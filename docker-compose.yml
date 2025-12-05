@@ -1,0 +1,12 @@
+services:
+  web-chat:
+    build: .
+    ports:
+      - "23333:23333"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=data/web_chat.db
+      - RUST_LOG=info
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
