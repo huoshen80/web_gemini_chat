@@ -76,7 +76,7 @@ bun run dev # 或 npm run dev
 如果你不想使用 Docker，也可以手动构建并运行生产环境版本。
 
 ### 前置要求
-- **Rust**: 1.83 或更高版本
+- **Rust**: 1.88 或更高版本
 - **Node.js**: 18+ 或 **Bun**: 1.0+
 
 ### 步骤 1: 构建前端
@@ -103,6 +103,9 @@ Copy-Item -Recurse frontend/dist static
 
 ### 步骤 3: 编译并运行后端
 ```bash
+# Linux（Ubuntu/Debian）安装依赖
+apt-get update && apt-get install -y pkg-config libssl-dev
+
 # 编译发布版本 (Release Mode)
 cargo build --release
 
