@@ -14,8 +14,3 @@ Thumbs.db
 # ai_cli
 .ai_cli
 1cli.bat
-
-# Database
-*.db
-*.db-journal
-data/
