@@ -1,10 +1,24 @@
 // API 配置
-export const API_CONFIG = {
-	WS_URL: "ws://127.0.0.1:23333/ws",
-	API_URL: "http://127.0.0.1:23333/api",
-	HEALTH_URL: "http://127.0.0.1:23333/api/health",
-	UPLOAD_URL: "http://127.0.0.1:23333/api/upload",
+const getApiConfig = () => {
+	// 判断是否为开发环境
+	const isDev = import.meta.env.DEV;
+	
+	// 在开发环境使用固定地址，生产环境使用当前域名
+	const baseUrl = isDev ? "http://127.0.0.1:23333" : window.location.origin;
+	const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+	const wsUrl = isDev 
+		? "ws://127.0.0.1:23333/ws" 
+		: `${wsProtocol}//${window.location.host}/ws`;
+
+	return {
+		WS_URL: wsUrl,
+		API_URL: `${baseUrl}/api`,
+		HEALTH_URL: `${baseUrl}/api/health`,
+		UPLOAD_URL: `${baseUrl}/api/upload`,
+	};
 };
+
+export const API_CONFIG = getApiConfig();
 
 // 生成唯一 ID
 export function generateId(): string {
