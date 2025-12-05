@@ -16,7 +16,7 @@ COPY frontend/ ./
 RUN bun run build
 
 # ===== 后端构建阶段 =====
-FROM rust:1.83-slim AS backend-builder
+FROM rust:1.91.1-slim AS backend-builder
 
 WORKDIR /app
 
