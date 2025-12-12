@@ -12,7 +12,7 @@ export default defineConfig({
 		presetIcons(),
 		presetTypography(),
 		presetWebFonts({
-			provider: "google",
+			provider: "bunny",
 			fonts: {
 				sans: "Inter:400,500,600,700",
 				mono: "Fira Code",
