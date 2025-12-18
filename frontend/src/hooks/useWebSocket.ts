@@ -22,7 +22,7 @@ export function useWebSocket() {
 		useState<ConnectionStatus>("connecting");
 	const [messages, setMessages] = useState<Message[]>(() => loadMessages());
 	const [isLoading, setIsLoading] = useState(false);
-	const [currentModel, setCurrentModel] = useState<ModelType>("flash");
+	const [currentModel, setCurrentModel] = useState<ModelType>("flash-lite");
 	const [fileContexts, setFileContexts] = useState<FileContext[]>([]);
 	const [error, setError] = useState<string>("");
 

@@ -4,7 +4,7 @@ mod services;
 
 use actix_cors::Cors;
 use actix_files::Files;
-use actix_web::{web, App, HttpServer};
+use actix_web::{App, HttpServer, web};
 use dotenv::dotenv;
 use std::env;
 use std::sync::Arc;
@@ -20,31 +20,29 @@ async fn main() -> std::io::Result<()> {
     // 检查 API Key
     match env::var("GEMINI_API_KEY") {
         Ok(_) => println!("✅ GEMINI_API_KEY 加载成功"),
-        Err(_) => println!(
-            "⚠️  警告: GEMINI_API_KEY 未设置，请在 .env 文件中配置"
-        ),
+        Err(_) => println!("⚠️  警告: GEMINI_API_KEY 未设置，请在 .env 文件中配置"),
     }
 
     // 初始化聊天记忆数据库
     let db_path = env::var("DATABASE_URL").unwrap_or_else(|_| "data/web_chat.db".to_string());
-    
+
     // 确保数据库目录存在
     if let Some(parent) = std::path::Path::new(&db_path).parent() {
         std::fs::create_dir_all(parent)?;
     }
 
-    let memory = Arc::new(
-        ChatMemory::new(&db_path).expect("无法创建聊天记忆数据库")
-    );
+    let memory = Arc::new(ChatMemory::new(&db_path).expect("无法创建聊天记忆数据库"));
     println!("💾 聊天记忆数据库已初始化 ({})", db_path);
-    
+
     let message_count = memory.message_count().unwrap_or(0);
     if message_count > 0 {
         println!("📝 已加载 {} 条历史消息", message_count);
     }
 
     println!("🦀 Rust 后端服务器启动于 http://0.0.0.0:23333");
-    println!("📡 支持的模型: Gemini 2.0 Flash (flash), Gemini 2.5 Flash (flash-2.5), Gemini 2.5 Pro (pro-2.5)");
+    println!(
+        "📡 支持的模型: Gemini 2.5 Flash Lite (flash-lite), Gemini 2.5 Flash (flash-2.5), Gemini 3.0 Flash (flash-3)"
+    );
 
     HttpServer::new(move || {
         let cors = Cors::default()
@@ -72,4 +70,3 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
-

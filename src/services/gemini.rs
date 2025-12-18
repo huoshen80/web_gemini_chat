@@ -28,7 +28,7 @@ pub async fn call_gemini_api(
         generation_config: None,
     };
 
-    // Pro 模型启用思考功能
+    // 思考功能已移除（3.0 Flash 不支持）
     if model.supports_thinking() {
         request_body.generation_config = Some(GenerationConfig {
             temperature: Some(1.0),

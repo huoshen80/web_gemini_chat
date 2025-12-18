@@ -53,47 +53,47 @@ pub struct PartResponse {
 /// 支持的模型类型
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum GeminiModel {
-    Flash,   // gemini-2.0-flash
-    Flash25, // gemini-2.5-flash
-    Pro25,   // gemini-2.5-pro
+    FlashLite, // gemini-2.5-flash-lite
+    Flash25,   // gemini-2.5-flash
+    Flash3,    // gemini-3-flash
 }
 
 impl GeminiModel {
     pub fn from_str(s: &str) -> Self {
         match s.to_lowercase().as_str() {
-            "flash" | "gemini-2.0-flash" => GeminiModel::Flash,
+            "flash-lite" | "gemini-2.5-flash-lite" => GeminiModel::FlashLite,
             "flash-2.5" | "gemini-2.5-flash" => GeminiModel::Flash25,
-            "pro-2.5" | "gemini-2.5-pro" => GeminiModel::Pro25,
-            _ => GeminiModel::Flash,
+            "flash-3" | "gemini-3-flash-preview" => GeminiModel::Flash3,
+            _ => GeminiModel::FlashLite,
         }
     }
 
     pub fn api_name(&self) -> &'static str {
         match self {
-            GeminiModel::Flash => "gemini-2.0-flash",
+            GeminiModel::FlashLite => "gemini-2.5-flash-lite",
             GeminiModel::Flash25 => "gemini-2.5-flash",
-            GeminiModel::Pro25 => "gemini-2.5-pro",
+            GeminiModel::Flash3 => "gemini-3-flash-preview",
         }
     }
 
     pub fn display_name(&self) -> &'static str {
         match self {
-            GeminiModel::Flash => "Gemini 2.0 Flash",
+            GeminiModel::FlashLite => "Gemini 2.5 Flash Lite",
             GeminiModel::Flash25 => "Gemini 2.5 Flash",
-            GeminiModel::Pro25 => "Gemini 2.5 Pro",
+            GeminiModel::Flash3 => "Gemini 3.0 Flash",
         }
     }
 
     pub fn supports_thinking(&self) -> bool {
-        matches!(self, GeminiModel::Pro25)
+        false
     }
 
     /// 返回用于存储的模型标识字符串
     pub fn as_str(&self) -> &'static str {
         match self {
-            GeminiModel::Flash => "flash",
+            GeminiModel::FlashLite => "flash-lite",
             GeminiModel::Flash25 => "flash-2.5",
-            GeminiModel::Pro25 => "pro-2.5",
+            GeminiModel::Flash3 => "flash-3",
         }
     }
 }

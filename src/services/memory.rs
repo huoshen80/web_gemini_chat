@@ -350,9 +350,10 @@ pub fn format_recent_context(messages: &[ChatRecord], max_messages: usize) -> St
         };
         // 优先使用摘要
         let content = msg.summary.as_ref().unwrap_or(&msg.content);
-        // 截断过长的内容
-        let truncated = if content.len() > 200 {
-            format!("{}...", &content[..200])
+        // 截断过长的内容（使用字符边界安全的方法）
+        let truncated = if content.chars().count() > 200 {
+            let truncated_str: String = content.chars().take(200).collect();
+            format!("{}...", truncated_str)
         } else {
             content.clone()
         };

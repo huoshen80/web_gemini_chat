@@ -35,7 +35,7 @@ impl ChatWebSocket {
         Self {
             hb: Instant::now(),
             file_contexts: Vec::new(),
-            current_model: GeminiModel::Flash,
+            current_model: GeminiModel::FlashLite,
             memory,
             user_id: String::new(), // 将在收到消息时设置
         }

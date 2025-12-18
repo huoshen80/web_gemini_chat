@@ -23,7 +23,7 @@ export function ModelSelector({
 				onClick={() => setShowMenu(!showMenu)}
 				className="flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors text-sm font-medium text-gray-600 border border-gray-200"
 			>
-				{currentModel === "flash" ? (
+				{currentModel === "flash-lite" ? (
 					<Zap className="w-4 h-4 text-amber-500" />
 				) : (
 					<Sparkles className="w-4 h-4 text-violet-500" />
@@ -50,11 +50,10 @@ export function ModelSelector({
 									onModelChange(model.id);
 									setShowMenu(false);
 								}}
-								className={`w-full px-4 py-2.5 flex items-center gap-3 hover:bg-gray-50 transition-colors ${
-									currentModel === model.id ? "bg-violet-50" : ""
-								}`}
+								className={`w-full px-4 py-2.5 flex items-center gap-3 hover:bg-gray-50 transition-colors ${currentModel === model.id ? "bg-violet-50" : ""
+									}`}
 							>
-								{model.id === "flash" ? (
+								{model.id === "flash-lite" ? (
 									<Zap className="w-4 h-4 text-amber-500" />
 								) : (
 									<Sparkles className="w-4 h-4 text-violet-500" />

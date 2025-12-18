@@ -22,7 +22,7 @@ export type ConnectionStatus =
 	| "error";
 
 // 模型类型
-export type ModelType = "flash" | "flash-2.5" | "pro-2.5";
+export type ModelType = "flash-lite" | "flash-2.5" | "flash-3";
 
 export interface ModelInfo {
 	id: ModelType;
@@ -32,9 +32,9 @@ export interface ModelInfo {
 
 export const MODELS: ModelInfo[] = [
 	{
-		id: "flash",
-		name: "Gemini 2.0 Flash",
-		description: "快速响应，高性价比，适合日常问答",
+		id: "flash-lite",
+		name: "Gemini 2.5 Flash Lite",
+		description: "轻量级模型，经济实惠，适合简单问答",
 	},
 	{
 		id: "flash-2.5",
@@ -42,9 +42,9 @@ export const MODELS: ModelInfo[] = [
 		description: "增强版 Flash，处理更长的上下文和多模态输入",
 	},
 	{
-		id: "pro-2.5",
-		name: "Gemini 2.5 Pro",
-		description: "强大的推理模型，擅长复杂逻辑、深度思考与代码生成",
+		id: "flash-3",
+		name: "Gemini 3.0 Flash",
+		description: "最新一代模型，速度更快、性能更强，适合各类对话场景",
 	},
 ];
 
